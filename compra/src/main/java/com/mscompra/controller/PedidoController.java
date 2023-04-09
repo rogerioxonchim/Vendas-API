@@ -3,6 +3,7 @@ package com.mscompra.controller;
 import com.mscompra.model.Pedido;
 import com.mscompra.service.PedidoService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
