@@ -26,7 +26,7 @@ public class Consumer {
     public void consumer(@Payload Message message) throws IOException {
         var pedido = mapper.readValue(message.getBody(), Pedido.class);
         System.out.println("Mensagem recebid no WorkerCompras: " + pedido);
-        emailService.notificarCliente("rogerio@voti.com.br");
+//        emailService.notificarCliente("rogerio@voti.com.br");
     }
 
 }
