@@ -2,6 +2,7 @@ package com.workercompras.service;
 
 import com.workercompras.model.Pedido;
 import com.workercompras.service.producer.PedidoProducer;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -9,14 +10,13 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 @Slf4j
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @Service
 public class EmailService {
 
-    @Autowired
-    private JavaMailSender javaMailSender;
+    private final JavaMailSender javaMailSender;
 
-    @Autowired
-    private PedidoProducer pedidoProducer;
+    private final PedidoProducer pedidoProducer;
 
     public void notificarCliente(Pedido pedido) {
         var msg = new SimpleMailMessage();
