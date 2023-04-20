@@ -97,7 +97,6 @@ public class PedidoControllerTest {
                 .andExpect(status().isNoContent());
 
         Throwable exception = assertThrows(EntidadeNaoEncontradaException.class, () -> pedidoService.excluir(id));
-
         assertEquals("O pedido de id: " + id + " nao existe na base de dados!", exception.getMessage());
     }
 }
