@@ -69,7 +69,7 @@ public class PedidoControllerTest {
     @DisplayName("GET - Deve buscar o pedido com sucesso na base de dados")
     @Test
     void deveBuscarPedidoComSucesso() throws Exception {
-        var id = 1L;
+        var id = 2L;
 
         mockMvc.perform(get(ROTA_PEDIDO.concat("/" + id)))
                 .andDo(print())
