@@ -7,12 +7,15 @@ import com.mscompra.dados.DadosMok;
 import com.mscompra.model.Pedido;
 import com.mscompra.service.PedidoService;
 import com.mscompra.service.exception.EntidadeNaoEncontradaException;
+import com.mscompra.service.rabbitmq.Producer;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -41,12 +44,16 @@ public class PedidoControllerTest {
     @Autowired
     private ObjectMapper mapper;
 
+    @MockBean
+    private Producer producer;
+
     @DisplayName("POST - Deve cadastrar um novo pedido com sucesso no banco de dados")
     @Test
     void deveCadastrarPedidoComSucesso() throws Exception {
         var pedidoBody = DadosMok.getPedido();
         var id = 1L;
 
+        Mockito.doNothing().when(producer).enviarPedido(Mockito.any(Pedido.class));
         mockMvc.perform(post(ROTA_PEDIDO)
                 .content(mapper.writeValueAsString(pedidoBody))
                 .contentType(MediaType.APPLICATION_JSON)
