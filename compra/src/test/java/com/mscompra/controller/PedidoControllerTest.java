@@ -79,7 +79,7 @@ public class PedidoControllerTest {
     @DisplayName("GET - Deve falhar ao buscar pedido que nao existe")
     @Test
     void deveFalharAoBuscarPedidoQueNaoExiste() throws Exception {
-        var id = 2L;
+        var id = 3L;
 
         mockMvc.perform(get(ROTA_PEDIDO.concat("/" + id)))
                 .andDo(print())
